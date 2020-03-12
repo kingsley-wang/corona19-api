@@ -11,26 +11,26 @@ ActiveAdmin.register_page "Dashboard" do
 
     # Here is an example of a simple dashboard with columns and panels.
     #
-    columns do
-      column do
-        panel "Drinks" do
-          ul do
-            Drink.all.each do |drink|
-              li link_to(drink.title, admin_drink_path(drink))
-            end
-          end
-        end
-      end
+    # columns do
+    #   column do
+    #     panel "Drinks" do
+    #       ul do
+    #         Drink.all.each do |drink|
+    #           li link_to(drink.title, admin_drink_path(drink))
+    #         end
+    #       end
+    #     end
+    #   end
 
-      column do
-        panel "Ingredients" do
-          ul do
-            Ingredient.all.each do |ig|
-              li link_to(ig.description, admin_ingredient_path(ig))
-            end
-          end
-        end
-      end
-    end
+    #   column do
+    #     panel "Ingredients" do
+    #       ul do
+    #         Ingredient.all.each do |ig|
+    #           li link_to(ig.description, admin_ingredient_path(ig))
+    #         end
+    #       end
+    #     end
+    #   end
+    # end
   end # content
 end

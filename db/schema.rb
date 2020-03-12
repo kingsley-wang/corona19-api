@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_11_120012) do
+ActiveRecord::Schema.define(version: 2020_03_12_085916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,22 +41,49 @@ ActiveRecord::Schema.define(version: 2020_03_11_120012) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "drinks", force: :cascade do |t|
+  create_table "health_infos", force: :cascade do |t|
     t.string "title"
-    t.string "description"
-    t.string "steps"
-    t.string "source"
+    t.string "author"
+    t.text "content"
+    t.string "imagesrc"
+    t.string "link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "ingredients", force: :cascade do |t|
-    t.bigint "drink_id"
-    t.string "description"
+  create_table "official_news", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.string "imagesrc"
+    t.string "link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["drink_id"], name: "index_ingredients_on_drink_id"
   end
 
-  add_foreign_key "ingredients", "drinks"
+  create_table "state_records", force: :cascade do |t|
+    t.bigint "state_id"
+    t.integer "confirmed"
+    t.integer "deaths"
+    t.integer "recovered"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["state_id"], name: "index_state_records_on_state_id"
+  end
+
+  create_table "states", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "unconfirmed_infos", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.string "imagesrc"
+    t.string "link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "state_records", "states"
 end

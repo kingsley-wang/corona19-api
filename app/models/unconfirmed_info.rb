@@ -1,0 +1,2 @@
+class UnconfirmedInfo < ApplicationRecord
+end

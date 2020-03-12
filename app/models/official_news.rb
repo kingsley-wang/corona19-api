@@ -1,0 +1,2 @@
+class OfficialNews < ApplicationRecord
+end
