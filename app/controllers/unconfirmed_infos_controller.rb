@@ -3,7 +3,7 @@ class UnconfirmedInfosController < ApplicationController
 
   # GET /unconfirmed_infos
   def index
-    @unconfirmed_infos = UnconfirmedInfo.all
+    @unconfirmed_infos = UnconfirmedInfo.order(created_at: :desc).take(params[:counts] || 50)
 
     render json: @unconfirmed_infos
   end

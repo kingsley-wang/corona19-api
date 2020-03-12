@@ -3,7 +3,7 @@ class OfficialNewsController < ApplicationController
 
   # GET /official_news
   def index
-    @official_news = OfficialNews.all
+    @official_news = OfficialNews.order(created_at: :desc).take(params[:counts] || 50)
 
     render json: @official_news
   end

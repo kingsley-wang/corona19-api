@@ -3,7 +3,7 @@ class HealthInfosController < ApplicationController
 
   # GET /health_infos
   def index
-    @health_infos = HealthInfo.all
+    @health_infos = HealthInfo.order(created_at: :desc).take(params[:counts] || 50)
 
     render json: @health_infos
   end
