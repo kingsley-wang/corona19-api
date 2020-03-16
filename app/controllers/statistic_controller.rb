@@ -2,6 +2,17 @@ class StatisticController < ApplicationController
   before_action :set_up
 
   def trending
+    total = []
+    @nsw.state_records.count.times do |n|
+      total.push(@nsw.state_records.pluck(:confirmed)[n] +
+      @vic.state_records.pluck(:confirmed)[n] +
+      @qld.state_records.pluck(:confirmed)[n] +
+      @wa.state_records.pluck(:confirmed)[n] +
+      @sa.state_records.pluck(:confirmed)[n] +
+      @tas.state_records.pluck(:confirmed)[n] +
+      @nt.state_records.pluck(:confirmed)[n])
+    end
+
     @trending = {
       time: @nsw.state_records.pluck(:updated_at).map { |date| date.strftime("%m%d") },
       state: {
@@ -12,7 +23,8 @@ class StatisticController < ApplicationController
         'South Australia': @sa.state_records.pluck(:confirmed),
         'Tasmania': @tas.state_records.pluck(:confirmed),
         'Northern Territory': @nt.state_records.pluck(:confirmed),
-      }
+      },
+      "All Australia": total
     }
 
     render json: @trending
@@ -67,13 +79,17 @@ class StatisticController < ApplicationController
                            @tas.state_records[-2].deaths.to_i +
                            @nt.state_records[-2].deaths.to_i
 
+    total_confirmed = @nsw.state_records.sum(:confirmed)
+    total_recovered = @nsw.state_records.sum(:recovered)
+    total_deaths = @nsw.state_records.sum(:deaths)
+
      @overview = {
       "Time": Time.now.strftime("%m-%d-%Y %H:%M%P"),
-      "Confirmed": today_total_confirmed,
+      "Confirmed": total_confirmed,
       "Confirmed_new": today_total_confirmed - lastday_total_confirmed,
-      "Recovered": today_total_recovered,
+      "Recovered": total_recovered,
       "Recovered_new": today_total_recovered - lastday_total_recovered,
-      "Deaths": today_total_deaths,
+      "Deaths": total_deaths,
       "Deaths_new": today_total_deaths - lastday_total_deaths,
      }
 

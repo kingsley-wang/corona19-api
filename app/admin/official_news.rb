@@ -1,5 +1,5 @@
 ActiveAdmin.register OfficialNews do
-  permit_params :title, :author, :content, :imagesrc, :link, :created_at, :updated_at
+  permit_params :title, :content, :imagesrc, :link, :created_at, :updated_at
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -14,5 +14,23 @@ ActiveAdmin.register OfficialNews do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
+  form do |f|
+    f.inputs do
+      f.input :title
+      f.input :content, as: :string
+      f.input :imagesrc
+      f.input :link
+      f.input :created_at, as: :datepicker,
+        datepicker_options: {
+          min_date: "2020-1-1",
+          max_date: "+3D"
+        }
+      f.input :updated_at, as: :datepicker,
+        datepicker_options: {
+          min_date: "2020-1-1",
+          max_date: "+3D"
+        }
+    end
+    f.actions
+  end
 end

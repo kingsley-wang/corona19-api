@@ -14,5 +14,23 @@ ActiveAdmin.register UnconfirmedInfo do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
+  form do |f|
+    f.inputs do
+      f.input :title
+      f.input :content, as: :string
+      f.input :imagesrc
+      f.input :link
+      f.input :created_at, as: :datepicker,
+        datepicker_options: {
+          min_date: "2020-1-1",
+          max_date: "+3D"
+        }
+      f.input :updated_at, as: :datepicker,
+        datepicker_options: {
+          min_date: "2020-1-1",
+          max_date: "+3D"
+        }
+    end
+    f.actions
+  end
 end
