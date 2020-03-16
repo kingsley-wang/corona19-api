@@ -10,7 +10,7 @@ class StatisticController < ApplicationController
       @wa.state_records.pluck(:confirmed)[n] +
       @sa.state_records.pluck(:confirmed)[n] +
       @tas.state_records.pluck(:confirmed)[n] +
-      @nt.state_records.pluck(:confirmed)[n]) +
+      @nt.state_records.pluck(:confirmed)[n]+
       @act.state_records.pluck(:confirmed)[n])
     end
 
