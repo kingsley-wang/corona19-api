@@ -79,13 +79,24 @@ class StatisticController < ApplicationController
                            @tas.state_records[-2].deaths.to_i +
                            @nt.state_records[-2].deaths.to_i
 
-    total_confirmed = @nsw.state_records.sum(:confirmed)
-    total_recovered = @nsw.state_records.sum(:recovered)
-    total_deaths = @nsw.state_records.sum(:deaths)
+    total_recovered = @nsw.state_records.sum(:recovered) +
+                      @vic.state_records.sum(:recovered) +
+                      @qld.state_records.sum(:recovered) +
+                      @wa.state_records.sum(:recovered) +
+                      @sa.state_records.sum(:recovered) +
+                      @tas.state_records.sum(:recovered) +
+                      @nt.state_records.sum(:recovered)
+    total_deaths = @nsw.state_records.sum(:deaths) +
+                    @vic.state_records.sum(:deaths) +
+                    @qld.state_records.sum(:deaths) +
+                    @wa.state_records.sum(:deaths) +
+                    @sa.state_records.sum(:deaths) +
+                    @tas.state_records.sum(:deaths) +
+                    @nt.state_records.sum(:deaths)
 
      @overview = {
       "Time": Time.now.strftime("%m-%d-%Y %H:%M%P"),
-      "Confirmed": total_confirmed,
+      "Confirmed": today_total_confirmed,
       "Confirmed_new": today_total_confirmed - lastday_total_confirmed,
       "Recovered": total_recovered,
       "Recovered_new": today_total_recovered - lastday_total_recovered,
