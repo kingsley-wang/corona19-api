@@ -46,6 +46,6 @@ class HealthInfosController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def health_info_params
-      params.require(:health_info).permit(:title, :author, :content, :imagesrc, :link)
+      params.require(:health_info).permit(:title, :author, :content, :imagesrc, :link, :created_at, :updated_at)
     end
 end

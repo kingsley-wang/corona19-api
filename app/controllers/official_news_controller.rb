@@ -46,6 +46,6 @@ class OfficialNewsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def official_news_params
-      params.require(:official_news).permit(:title, :author, :content, :imagesrc, :link)
+      params.require(:official_news).permit(:title, :author, :content, :imagesrc, :link, :created_at, :updated_at)
     end
 end

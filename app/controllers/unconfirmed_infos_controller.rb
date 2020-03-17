@@ -46,6 +46,6 @@ class UnconfirmedInfosController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def unconfirmed_info_params
-      params.require(:unconfirmed_info).permit(:title, :author, :content, :imagesrc, :link)
+      params.require(:unconfirmed_info).permit(:title, :author, :content, :imagesrc, :link, :created_at, :updated_at)
     end
 end

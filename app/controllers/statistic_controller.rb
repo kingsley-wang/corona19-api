@@ -15,7 +15,7 @@ class StatisticController < ApplicationController
     end
 
     @trending = {
-      time: @nsw.state_records.pluck(:updated_at).map { |date| date.strftime("%m%d") },
+      time: @nsw.state_records.pluck(:created_at).map { |date| date.strftime("%m%d") },
       state: {
         'New South Wales': @nsw.state_records.pluck(:confirmed),
         'Victoria': @vic.state_records.pluck(:confirmed),

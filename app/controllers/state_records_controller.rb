@@ -46,6 +46,6 @@ class StateRecordsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def state_record_params
-      params.require(:state_record).permit(:state_id, :confirmed, :recovered)
+      params.require(:state_record).permit(:state_id, :confirmed, :recovered, :created_at, :updated_at)
     end
 end
