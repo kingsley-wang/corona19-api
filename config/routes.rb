@@ -8,8 +8,9 @@ Rails.application.routes.draw do
       resources :state_records
     end
     resources :unconfirmed_infos
-    resources :official_news
     resources :health_infos
+    resources :frequent_question_anwsers
+    resources :official_news
 
     get 'trending', to: 'statistic#trending'
     get 'overview', to: 'statistic#overview'
