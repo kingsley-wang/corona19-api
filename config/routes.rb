@@ -13,5 +13,6 @@ Rails.application.routes.draw do
 
     get 'trending', to: 'statistic#trending'
     get 'overview', to: 'statistic#overview'
+    get 'live_states_confirmed', to: 'statistic#live_states_confirmed'
   end
 end

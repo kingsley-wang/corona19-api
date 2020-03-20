@@ -100,6 +100,21 @@ class StatisticController < ApplicationController
      render json: @overview
   end
 
+  def live_states_confirmed
+    @overview = {
+      'New South Wales': @nsw.state_records[-1].confirmed,
+      'Victoria': @vic.state_records[-1].confirmed,
+      'Queensland': @qld.state_records[-1].confirmed,
+      'Western Australia': @wa.state_records[-1].confirmed,
+      'South Australia': @sa.state_records[-1].confirmed,
+      'Tasmania': @tas.state_records[-1].confirmed,
+      'Australian Capital Territory': @act.state_records[-1].confirmed,
+      'Northern Territory': @nt.state_records[-1].confirmed,
+    }
+
+    render json: @overview
+  end
+
   private
 
   def set_up
