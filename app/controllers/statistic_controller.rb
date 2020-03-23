@@ -15,16 +15,16 @@ class StatisticController < ApplicationController
     end
 
     @trending = {
-      time: @nsw.state_records.pluck(:created_at).map { |date| date.strftime("%m%d") },
+      time: @nsw.state_records.order('created_at ASC').pluck(:created_at).map { |date| date.strftime("%m%d") },
       state: {
-        'New South Wales': @nsw.state_records.pluck(:confirmed),
-        'Victoria': @vic.state_records.pluck(:confirmed),
-        'Queensland': @qld.state_records.pluck(:confirmed),
-        'Western Australia': @wa.state_records.pluck(:confirmed),
-        'South Australia': @sa.state_records.pluck(:confirmed),
-        'Tasmania': @tas.state_records.pluck(:confirmed),
-        'Australian Capital Territory': @act.state_records.pluck(:confirmed),
-        'Northern Territory': @nt.state_records.pluck(:confirmed),
+        'New South Wales': @nsw.state_records.order('created_at ASC').pluck(:confirmed),
+        'Victoria': @vic.state_records.order('created_at ASC').pluck(:confirmed),
+        'Queensland': @qld.state_records.order('created_at ASC').pluck(:confirmed),
+        'Western Australia': @wa.state_records.order('created_at ASC').pluck(:confirmed),
+        'South Australia': @sa.state_records.order('created_at ASC').pluck(:confirmed),
+        'Tasmania': @tas.state_records.order('created_at ASC').pluck(:confirmed),
+        'Australian Capital Territory': @act.state_records.order('created_at ASC').pluck(:confirmed),
+        'Northern Territory': @nt.state_records.order('created_at ASC').pluck(:confirmed),
       },
       "All Australia": total
     }
