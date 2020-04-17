@@ -15,7 +15,7 @@ class DonationsController < ApplicationController
       @donations = @donations.where("created_at <= ?", Time.parse(params[:endDate]))
     end
 
-    render json: @donations.order("created_at DESC")
+    render json: @donations.order(created_at: :desc, updated_at: :desc)
   end
 
   # GET /donations/1
