@@ -1,5 +1,5 @@
 ActiveAdmin.register Donation do
-  permit_params :donator, :institute, :items, :quantity, :updated_at, :created_at
+  permit_params :donator, :institute, :items, :quantity, :viewable, :updated_at, :created_at
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -20,6 +20,7 @@ ActiveAdmin.register Donation do
       f.input :institute
       f.input :items
       f.input :quantity
+      f.input :viewable, as: :boolean
       f.input :created_at, as: :datepicker,
         datepicker_options: {
           min_date: "2020-1-1",
