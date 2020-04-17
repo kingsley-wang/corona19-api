@@ -26,7 +26,6 @@ class DonationsController < ApplicationController
   # POST /donations
   def create
     @donation = Donation.new(donation_params)
-    byebug
     if @donation.save
       render json: @donation, status: :created, location: @donation
     else
