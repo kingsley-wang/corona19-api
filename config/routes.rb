@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :health_infos
     resources :frequent_question_anwsers
     resources :official_news
+    resources :donations
 
     get 'trending', to: 'statistic#trending'
     get 'overview', to: 'statistic#overview'

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  donator: MyString
+  institute: MyString
+  items: MyString
+  quantity: 1
+
+two:
+  donator: MyString
+  institute: MyString
+  items: MyString
+  quantity: 1
