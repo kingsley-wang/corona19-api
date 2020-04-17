@@ -4,14 +4,14 @@ class DonationsController < ApplicationController
   # GET /donations
   def index
     @donations = Donation.all
-    @donations = @donations.where("donator LIKE ?", "%#{params[:donator]}%") if params[:donator]
-    @donations = @donations.where("institute LIKE ?", "%#{params[:institute]}%") if params[:institute]
+    @donations = @donations.where("lower(donator) LIKE ?", "%#{params[:donator].strip.downcase}%") if params[:donator].present?
+    @donations = @donations.where("lower(institute) LIKE ?", "%#{params[:institute].strip.downcase}%") if params[:institute].present?
 
-    if params[:startDate] && params[:endDate]
+    if params[:startDate].present? && params[:endDate].present?
       @donations = @donations.where("created_at between ? and ?", Time.parse(params[:startDate]), Time.parse(params[:endDate]))
-    elsif params[:startDate]
+    elsif params[:startDate].present?
       @donations = @donations.where("created_at >= ?", Time.parse(params[:startDate]))
-    elsif params[:endDate]
+    elsif params[:endDate].present?
       @donations = @donations.where("created_at <= ?", Time.parse(params[:endDate]))
     end
 
