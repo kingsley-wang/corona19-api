@@ -3,13 +3,9 @@ class DonationsController < ApplicationController
 
   # GET /donations
   def index
-    if params[:q]
-      @donations = Donation.where(
-        'donator LIKE :search OR institute LIKE :search', search: params[:q]
-      ).order('updated_at DESC')
-    else
-      @donations = Donation.all
-    end
+    @donations = Donation.all
+    @donations = @donations.where("donator LIKE ?", "%#{params[:donator]}%") if params[:donator]
+    @donations = @donations.where("institute LIKE ?", "%#{params[:institute]}%") if params[:institute]
 
     if params[:startDate] && params[:endDate]
       @donations = @donations.where("updated_at between ? and ?", Time.parse(params[:startDate]), Time.parse(params[:endDate]))
