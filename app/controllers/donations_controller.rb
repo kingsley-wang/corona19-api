@@ -8,11 +8,11 @@ class DonationsController < ApplicationController
     @donations = @donations.where("institute LIKE ?", "%#{params[:institute]}%") if params[:institute]
 
     if params[:startDate] && params[:endDate]
-      @donations = @donations.where("updated_at between ? and ?", Time.parse(params[:startDate]), Time.parse(params[:endDate]))
+      @donations = @donations.where("created_at between ? and ?", Time.parse(params[:startDate]), Time.parse(params[:endDate]))
     elsif params[:startDate]
-      @donations = @donations.where("updated_at >= ?", Time.parse(params[:startDate]))
+      @donations = @donations.where("created_at >= ?", Time.parse(params[:startDate]))
     elsif params[:endDate]
-      @donations = @donations.where("updated_at <= ?", Time.parse(params[:endDate]))
+      @donations = @donations.where("created_at <= ?", Time.parse(params[:endDate]))
     end
 
     render json: @donations
